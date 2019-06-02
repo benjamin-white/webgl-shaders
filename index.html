@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset=utf-8>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>THREE.js Sandbox</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+
+  <body>
+
+    <main id="js-threeViewer"></main>
+
+    <footer>
+
+      <script src="../lib/three-js/three.js"></script>
+    	<script src="../lib/three-js/detector.js"></script>
+    	<script src="../lib/toxiclibs/toxiclibs.min.js"></script>
+      <script id="vertexShader" type="x-shader/x-vertex">
+
+				varying vec2 vUv;
+
+			  void main() {
+			    vUv         = uv;
+			    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+			  }
+
+      </script>
+      <script id="fragmentShader" type="x-shader/x-fragment">
+
+			  #ifdef GL_ES
+        precision mediump float;
+        #endif
+
+				uniform vec3 colorStopOne;
+        uniform vec3 colorStopTwo;
+				uniform float u_time;
+				uniform vec2 u_mouse;
+        varying vec2 vUv;
+
+				void main() {
+					vec3 color   = mix(colorStopOne, vec3(abs(sin(u_time)), abs(sin(u_time)), abs(sin(u_time))), vUv.x);
+					gl_FragColor = vec4(color, 1.0);
+				}
+
+      </script>
+      <script src="modules/material-preview.js"></script>
+
+    </footer>
+
+  </body>
+
+</html>
