@@ -1,6 +1,6 @@
 class MaterialPreview {
 
-  constructor(rootSel='#js-threeViewer') {
+  constructor(rootSel='#js-threeViewer', shaders) {
 
     this.canvas   = document.querySelector(rootSel);
     if (!this.canvas) return;
@@ -30,6 +30,10 @@ class MaterialPreview {
         value: 1.0
       }
     };
+    [
+      this.vertexShader,
+      this.fragmentShader
+    ] = shaders;
     this.material = this.newMaterial();
     this.init();
 
@@ -54,7 +58,7 @@ class MaterialPreview {
     // this.camera.updateProjectionMatrix();
     this.uniforms.u_resolution.value.x = this.renderer.domElement.width;
     this.uniforms.u_resolution.value.y = this.renderer.domElement.height;
-    
+
   }
 
   bindEvents() {
@@ -76,8 +80,8 @@ class MaterialPreview {
 
     return new THREE.ShaderMaterial({
       uniforms: this.uniforms,
-      vertexShader: document.getElementById( 'vertexShader' ).textContent,
-      fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+      vertexShader: this.vertexShader,
+      fragmentShader: this.fragmentShader
     });
 
   }
@@ -93,4 +97,9 @@ class MaterialPreview {
 
 }
 
-new MaterialPreview();
+const shaders = [
+  document.getElementById('vertexShader').textContent,
+  document.getElementById('shaderTestTwo').textContent
+]
+
+new MaterialPreview('#js-threeViewer', shaders);
