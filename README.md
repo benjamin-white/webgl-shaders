@@ -1,6 +1,6 @@
 # WEBGLSL
 
-_A project to explore and learn the curious world of GLSL shading on the web._
+_Exploring the curious world of GLSL shading._
 
 ### Useful Shaping Functions:
 
