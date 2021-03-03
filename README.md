@@ -1,3 +1,3 @@
 # **_WEBGL Shaders_**
 
-_Exploring GLSL shading._
+Exploring GLSL shading with Webpack for bundling and ThreeJS for drawing a texture plain to use the fragment shaders on.
